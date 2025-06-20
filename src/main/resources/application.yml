@@ -5,3 +5,41 @@ spring:
   application:
     name: email-service
 
+  data:
+    redis:
+      enabled: true
+      host: localhost
+      port: 6379
+
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    password: postgres
+    username: postgres
+    url: jdbc:postgresql://localhost:5432/vinaacademy_email
+    hikari:
+      auto-commit: true
+      minimum-idle: 5
+      maximum-pool-size: 20
+
+mail:
+  dailyLimit: 450
+  useRandom: false
+  onlyGmail: true
+  activeProviders:
+    - gmail
+  accounts:
+    - provider: gmail
+      host: smtp.gmail.com
+      port: 587
+      username: ${GMAIL_USERNAME}
+      password: ${GMAIL_PASSWORD}
+      properties:
+        mail.smtp.auth: true
+        mail.smtp.starttls.enable: true
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    prefer-ip-address: true
