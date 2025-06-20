@@ -10,8 +10,6 @@ import org.springframework.context.annotation.Configuration;
 import java.util.List;
 import java.util.Map;
 
-@Configuration
-@EnableConfigurationProperties(MailProperties.class)
 @ConfigurationProperties(prefix = "mail")
 @Data
 @NoArgsConstructor

@@ -20,6 +20,23 @@ spring:
       auto-commit: true
       minimum-idle: 5
       maximum-pool-size: 20
+  jpa:
+    generate-ddl: true
+    hibernate:
+      ddl-auto: update
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      topic: email-topic
+      group-id: email-group
+      auto-offset-reset: earliest
+      enable-auto-commit: true
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+    producer:
+      retries: 3
 
 mail:
   dailyLimit: 450
