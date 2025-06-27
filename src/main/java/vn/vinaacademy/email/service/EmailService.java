@@ -11,6 +11,7 @@ public interface EmailService {
     void sendEmailMQ(String toEmail, String subject, String body, boolean enableHtml);
 
     void sendEmailWithTemplate(String toEmail, String subject, String templateName, Map<String, Object> variables);
+    void sendVerificationEmail(String email, String token);
 
     void sendPasswordResetEmail(String email, String token);
 

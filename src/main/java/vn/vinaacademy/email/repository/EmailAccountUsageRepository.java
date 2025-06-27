@@ -3,6 +3,7 @@ package vn.vinaacademy.email.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 import vn.vinaacademy.email.entity.EmailAccountUsage;
 
@@ -15,5 +16,5 @@ public interface EmailAccountUsageRepository extends JpaRepository<EmailAccountU
     @Modifying
     @Transactional
     @Query("UPDATE EmailAccountUsage e SET e.emailCount = 0, e.lastResetDate = :today WHERE e.lastResetDate <> :today OR e.lastResetDate IS NULL")
-    void resetEmailCountsIfNotUpdatedToday(LocalDate today);
+    void resetEmailCountsIfNotUpdatedToday(@Param("today") LocalDate today);
 }

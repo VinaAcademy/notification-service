@@ -1,9 +1,9 @@
-package vn.vinaacademy.email.listener;
+package vn.vinaacademy.email.event;
 
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
-import vn.vinaacademy.email.listener.message.GenericEmailEvent;
 import vn.vinaacademy.email.service.EmailService;
+import vn.vinaacademy.kafka.event.GenericEmailEvent;
 
 import java.util.Map;
 
@@ -20,6 +20,12 @@ public class EmailEventListener {
     public void handleEmailEvent(GenericEmailEvent event) {
         Map<String, Object> data = event.getData();
         switch (event.getType()) {
+            case VERIFICATION:
+                emailService.sendVerificationEmail(
+                        (String) data.get("email"),
+                        (String) data.get("token")
+                );
+                break;
             case PASSWORD_RESET:
                 emailService.sendPasswordResetEmail(
                         (String) data.get("email"),
