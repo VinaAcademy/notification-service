@@ -7,8 +7,9 @@
         <artifactId>vinaacademy-parent</artifactId>
         <version>1.0.0</version>
     </parent>
+    <groupId>vn.vinaacademy</groupId>
     <artifactId>email-service</artifactId>
-    <version>${revision}</version>
+    <version>1.0.0</version>
     <name>email-service</name>
     <description>email-service</description>
 
@@ -24,9 +25,9 @@
     </properties>
     <dependencies>
         <dependency>
-            <groupId>com.github.VinaAcademy</groupId>
+            <groupId>vn.vinaacademy</groupId>
             <artifactId>common-library</artifactId>
-            <version>1.0.0</version>
+            <version>1.0.1</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -72,6 +73,10 @@
             <groupId>org.springframework.kafka</groupId>
             <artifactId>spring-kafka-test</artifactId>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-autoconfigure</artifactId>
         </dependency>
     </dependencies>
 
