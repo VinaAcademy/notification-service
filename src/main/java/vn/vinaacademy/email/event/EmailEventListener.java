@@ -1,6 +1,8 @@
 package vn.vinaacademy.email.event;
 
+import org.springframework.cloud.client.loadbalancer.reactive.ReactiveLoadBalancer;
 import org.springframework.kafka.annotation.KafkaListener;
+import org.springframework.kafka.support.Acknowledgment;
 import org.springframework.stereotype.Service;
 import vn.vinaacademy.email.service.EmailService;
 import vn.vinaacademy.kafka.event.GenericEmailEvent;
@@ -11,13 +13,16 @@ import java.util.Map;
 public class EmailEventListener {
 
     private final EmailService emailService;
+    private final ReactiveLoadBalancer.Factory factory;
 
-    public EmailEventListener(EmailService emailService) {
+    public EmailEventListener(EmailService emailService, ReactiveLoadBalancer.Factory factory) {
         this.emailService = emailService;
+        this.factory = factory;
     }
 
-    @KafkaListener(topics = "${spring.kafka.consumer.topic:email-topic}", groupId = "${spring.kafka.consumer.group-id:email-group}")
-    public void handleEmailEvent(GenericEmailEvent event) {
+    @KafkaListener(topics = "${spring.kafka.consumer.topic:email-topic}", groupId = "${spring.kafka.consumer.group-id:email-group}",
+            containerFactory = "kafkaListenerContainerFactory")
+    public void handleEmailEvent(GenericEmailEvent event, Acknowledgment acknowledgment) {
         Map<String, Object> data = event.getData();
         switch (event.getType()) {
             case VERIFICATION:
@@ -75,5 +80,6 @@ public class EmailEventListener {
             default:
                 throw new IllegalArgumentException("Unknown email event type: " + event.getType());
         }
+        acknowledgment.acknowledge();
     }
 }
