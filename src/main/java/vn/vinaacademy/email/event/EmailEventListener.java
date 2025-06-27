@@ -13,11 +13,9 @@ import java.util.Map;
 public class EmailEventListener {
 
     private final EmailService emailService;
-    private final ReactiveLoadBalancer.Factory factory;
 
-    public EmailEventListener(EmailService emailService, ReactiveLoadBalancer.Factory factory) {
+    public EmailEventListener(EmailService emailService) {
         this.emailService = emailService;
-        this.factory = factory;
     }
 
     @KafkaListener(topics = "${spring.kafka.consumer.topic:email-topic}", groupId = "${spring.kafka.consumer.group-id:email-group}",
