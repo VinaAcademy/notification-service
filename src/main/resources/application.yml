@@ -3,7 +3,7 @@ server:
 
 spring:
   application:
-    name: email-service
+    name: notification-service
 
   data:
     redis:
@@ -29,11 +29,34 @@ spring:
   kafka:
     bootstrap-servers: localhost:9092
     consumer:
-      topic: email-topic
-      group-id: email-group
+      group-id: notification-group
 
     producer:
       retries: 3
+
+resilience4j:
+  circuitbreaker:
+    instances:
+      userService:
+        failureRateThreshold: 50
+        waitDurationInOpenState: 10s
+        slidingWindowSize: 5
+        permittedNumberOfCallsInHalfOpenState: 2
+
+  retry:
+    instances:
+      userService:
+        maxAttempts: 3
+        waitDuration: 500ms
+        retryExceptions:
+          - feign.FeignException.InternalServerError
+          - feign.FeignException.ServiceUnavailable
+        ignoreExceptions:
+          - feign.FeignException.BadRequest
+
+notifications:
+  email:
+    enabled: true
 
 mail:
   dailyLimit: 450
