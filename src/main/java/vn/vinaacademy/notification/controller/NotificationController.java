@@ -51,7 +51,7 @@ public class NotificationController {
     @PutMapping("/{notificationId}/read")
     public void markAsRead(@PathVariable UUID notificationId) {
         notificationService.markAsRead(notificationId);
-        log.debug("Mark read notification ", notificationId);
+        log.debug("Mark read notification {}", notificationId);
     }
     
     @HasAnyRole({AuthConstants.STUDENT_ROLE, AuthConstants.INSTRUCTOR_ROLE, AuthConstants.ADMIN_ROLE, AuthConstants.STAFF_ROLE})

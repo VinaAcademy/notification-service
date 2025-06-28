@@ -17,7 +17,7 @@ public class EmailNotificationObserver implements NotificationObserver {
     private final EmailService emailService;
 
     @Value("${notifications.email.enabled:false}")
-    private boolean emailNotificationsEnabled;
+    private Boolean emailNotificationsEnabled;
 
     @Override
     public void onNotificationCreated(NotificationDTO notification) {
