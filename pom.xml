@@ -5,9 +5,9 @@
     <parent>
         <groupId>com.github.VinaAcademy</groupId>
         <artifactId>vinaacademy-parent</artifactId>
-        <version>1.0.0</version>
+        <version>2.0.0</version>
+        <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>vn.vinaacademy</groupId>
     <artifactId>notification-service</artifactId>
     <version>1.0.0</version>
     <name>notification-service</name>
@@ -26,6 +26,10 @@
 
     <repositories>
         <repository>
+            <id>central</id>
+            <url>https://repo.maven.apache.org/maven2</url>
+        </repository>
+        <repository>
             <id>jitpack.io</id>
             <url>https://jitpack.io</url>
         </repository>
@@ -37,9 +41,14 @@
     </properties>
     <dependencies>
         <dependency>
-            <groupId>vn.vinaacademy</groupId>
+            <groupId>com.github.VinaAcademy</groupId>
             <artifactId>common-library</artifactId>
-            <version>1.0.1</version>
+            <version>2.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.VinaAcademy</groupId>
+            <artifactId>security-client-library</artifactId>
+            <version>1.0.0</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -80,11 +89,6 @@
         <dependency>
             <groupId>org.springframework.kafka</groupId>
             <artifactId>spring-kafka</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.kafka</groupId>
-            <artifactId>spring-kafka-test</artifactId>
-            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
