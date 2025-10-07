@@ -1,4 +1,4 @@
-package vn.vinaacademy.notification.event;
+package vn.vinaacademy.notification.listener;
 
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.support.Acknowledgment;

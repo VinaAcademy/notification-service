@@ -48,6 +48,7 @@ public class NotificationServiceImpl implements NotificationService {
     NotificationDTO result = NotificationMapper.INSTANCE.toDTO(notification);
 
     result.setEmail(userInfo.getEmail());
+    result.setUserId(userInfo.getId());
 
     notificationPublisher.notifyObservers(result, NotificationAction.CREATE);
     return result;

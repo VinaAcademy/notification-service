@@ -23,4 +23,5 @@ public class NotificationDTO {
     private String targetUrl;
     private Notification.NotificationType type;
     private String email;
+    private String userId;
 }
