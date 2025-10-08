@@ -123,8 +123,8 @@ public class NotificationServiceImpl implements NotificationService {
     if (unreadNotis.isEmpty()) {
       return;
     }
-
-    notificationRepository.markRead(unreadNotis); // marks in DB in a transaction
+    List<UUID> notiIds = unreadNotis.stream().map(Notification::getId).toList();
+    notificationRepository.markRead(notiIds); // marks in DB in a transaction
 
     unreadNotis.forEach(notification ->
         notificationPublisher.notifyObservers(
