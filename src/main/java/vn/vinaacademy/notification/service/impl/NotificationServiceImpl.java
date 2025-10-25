@@ -16,6 +16,7 @@ import vn.vinaacademy.notification.dto.NotificationCreateDTO;
 import vn.vinaacademy.notification.dto.NotificationDTO;
 import vn.vinaacademy.notification.dto.mapper.NotificationMapper;
 import vn.vinaacademy.notification.entity.Notification;
+import vn.vinaacademy.notification.entity.Notification.NotificationType;
 import vn.vinaacademy.notification.observer.NotificationSubject;
 import vn.vinaacademy.notification.repository.NotificationRepository;
 import vn.vinaacademy.notification.service.NotificationService;
@@ -42,7 +43,7 @@ public class NotificationServiceImpl implements NotificationService {
     Notification notification = NotificationMapper.INSTANCE.toEntity(dto);
     notification.setRecipientId(UUID.fromString(userInfo.getId()));
     notification.setCreatedAt(LocalDateTime.now());
-    notification.setIsRead(false);
+    notification.setIsRead(dto.getType() == NotificationType.MESSAGE);
     notification = notificationRepository.save(notification);
 
     NotificationDTO result = NotificationMapper.INSTANCE.toDTO(notification);

@@ -28,7 +28,7 @@ spring:
     database-platform: ${SPRING_JPA_DATABASE_PLATFORM:org.hibernate.dialect.PostgreSQLDialect}
 
   kafka:
-    bootstrap-servers: ${SPRING_KAFKA_BOOTSTRAP_SERVERS:localhost:9092}
+    bootstrap-servers: ${SPRING_KAFKA_BOOTSTRAP_SERVERS:localhost:29092}
     consumer:
       group-id: ${SPRING_KAFKA_CONSUMER_GROUP_ID:notification-group}
     producer:
@@ -59,6 +59,10 @@ eureka:
       defaultZone: ${EUREKA_CLIENT_SERVICE_URL_DEFAULT_ZONE:http://localhost:8761/eureka/}
   instance:
     prefer-ip-address: ${EUREKA_INSTANCE_PREFER_IP_ADDRESS:true}
+
+application:
+  hmac:
+    secret: ${APPLICATION_HMAC_SECRET:super-secret-key-for-hmac}
 
 security:
   eureka:
