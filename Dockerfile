@@ -1,5 +1,5 @@
 # Stage 1: Build stage
-FROM openjdk:17-jdk-alpine AS builder
+FROM eclipse-temurin:17-jdk-alpine  AS builder
 
 # Thiết lập thư mục làm việc
 WORKDIR /app
@@ -20,7 +20,7 @@ COPY src ./src
 RUN ./mvnw clean package -DskipTests
 
 # Run stage
-FROM openjdk:17-jdk-alpine
+FROM eclipse-temurin:17-jdk-alpine
 
 LABEL maintainer="VinaAcademy"
 LABEL description="Notification Service for microservices architecture"
