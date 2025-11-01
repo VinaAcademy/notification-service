@@ -2,7 +2,7 @@ name: PR CD Pipeline
 
 on:
   pull_request:
-    branches: [ main, master ]
+    branches: [ main, master, develop ]
     types: [ opened, synchronize, reopened ]
 
 jobs:
