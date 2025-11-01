@@ -9,14 +9,14 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
-import vn.vinaacademy.common.constant.AuthConstants;
 import vn.vinaacademy.common.response.ApiResponse;
-import vn.vinaacademy.common.security.annotation.HasAnyRole;
 import vn.vinaacademy.notification.dto.NotificationDTO;
 import vn.vinaacademy.notification.entity.Notification;
 import vn.vinaacademy.notification.service.NotificationService;
 
 import java.util.UUID;
+import vn.vinaacademy.security.annotation.HasAnyRole;
+import vn.vinaacademy.security.constants.AuthConstants;
 
 @RestController
 @RequestMapping("/api/v1/notifications")

@@ -1,9 +1,8 @@
-package vn.vinaacademy.notification.event;
+package vn.vinaacademy.notification.listener;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.kafka.annotation.KafkaListener;
-import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.support.Acknowledgment;
 import org.springframework.stereotype.Component;
 import vn.vinaacademy.common.exception.BadRequestException;
@@ -17,7 +16,6 @@ import vn.vinaacademy.notification.service.NotificationService;
 @Component
 @RequiredArgsConstructor
 public class NotificationEventListener {
-    private final KafkaTemplate<String, Object> kafkaTemplate;
     private final NotificationService notificationService;
 
     @KafkaListener(topics = KafkaTopic.NOTIFICATION_TOPIC, groupId = "${spring.kafka.consumer.group-id:email-group}",

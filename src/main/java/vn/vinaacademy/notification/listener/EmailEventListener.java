@@ -1,5 +1,6 @@
-package vn.vinaacademy.notification.event;
+package vn.vinaacademy.notification.listener;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.support.Acknowledgment;
 import org.springframework.stereotype.Service;
@@ -9,6 +10,7 @@ import vn.vinaacademy.kafka.event.GenericEmailEvent;
 
 import java.util.Map;
 
+@Slf4j
 @Service
 public class EmailEventListener {
 
