@@ -10,6 +10,7 @@ spring:
       enabled: ${SPRING_DATA_REDIS_ENABLED:true}
       host: ${SPRING_DATA_REDIS_HOST:localhost}
       port: ${SPRING_DATA_REDIS_PORT:6379}
+      password: ${SPRING_DATA_REDIS_PASSWORD:}
 
   datasource:
     driver-class-name: ${SPRING_DATASOURCE_DRIVER_CLASS_NAME:org.postgresql.Driver}
@@ -19,7 +20,10 @@ spring:
     hikari:
       auto-commit: ${SPRING_DATASOURCE_HIKARI_AUTO_COMMIT:true}
       minimum-idle: ${SPRING_DATASOURCE_HIKARI_MINIMUM_IDLE:5}
-      maximum-pool-size: ${SPRING_DATASOURCE_HIKARI_MAXIMUM_POOL_SIZE:20}
+      maximum-pool-size: ${SPRING_DATASOURCE_HIKARI_MAXIMUM_POOL_SIZE:2}
+      connection-timeout: 30000
+      max-lifetime: 1800000
+      pool-name: HikariPool
 
   jpa:
     generate-ddl: ${SPRING_JPA_GENERATE_DDL:true}
